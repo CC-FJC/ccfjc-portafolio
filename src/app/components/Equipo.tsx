@@ -1,43 +1,44 @@
 "use client";
 
+import { useState } from "react";
 import styles from "./Equipo.module.css";
 
-const equipo = [
+const equipoData = [
   {
     nombre: "Dr. Héctor Yovanny Betancur Santa",
     rol: "Director (Doctor en Música)",
-    destacado: true,
+    destacado: false,
     foto: "https://i.ibb.co/mVXHv2s6/Yovanny.png",
   },
   {
     nombre: "Dra. Sandra Lince",
     rol: "Asesora Líder (PhD en Educación)",
     destacado: false,
-    foto: "https://picsum.photos/seed/maria/300/300",
+    foto: "https://i.ibb.co/DPtvmxRJ/Sandra.png",
   },
   {
     nombre: "Dr. Mauricio Arbeláez",
-    rol: "Asesora Líder (Dra. en Diseño y Creación)",
+    rol: "Asesor Líder (Dr. en Diseño y Creación)",
     destacado: false,
-    foto: "https://picsum.photos/seed/carlos/300/300",
+    foto: "https://i.ibb.co/gZLdqW6c/Mauricio.png",
   },
   {
     nombre: "Dra. Carmenza Gallego",
     rol: "Asesora Líder (Dra. en Diseño y Creación)",
     destacado: false,
-    foto: "https://picsum.photos/seed/carlos/300/300",
+    foto: "https://i.ibb.co/chFq4fgq/Carmenza.png",
   },
   {
     nombre: "Dra. Carolina Salguero",
     rol: "Asesora (Dra. en Diseño y Creación)",
     destacado: false,
-    foto: "https://picsum.photos/seed/ana/300/300",
+    foto: "https://i.ibb.co/nJ66WQD/Carolina.png",
   },
   {
     nombre: "Juana Valentina Bustos",
     rol: "Comunicación de la ciencia",
     destacado: false,
-    foto: "https://i.ibb.co/vxscYNGP/juana.png",
+    foto: "https://i.ibb.co/0y99x5ch/juana.png",
   },
   {
     nombre: "Susana Alvarán",
@@ -60,6 +61,21 @@ const equipo = [
 ];
 
 export default function Equipo() {
+  const [equipo, setEquipo] = useState(equipoData);
+
+  const handleMouseEnter = (index: number) => {
+    setEquipo((prev) =>
+      prev.map((p, i) => ({
+        ...p,
+        destacado: i === index, // solo uno true
+      }))
+    );
+  };
+
+  const handleMouseLeave = () => {
+    setEquipo(equipoData); // vuelve al estado inicial
+  };
+
   return (
     <section id="equipo" className={styles.section}>
       <h2 className={styles.sectionTitle}>Nuestro Equipo</h2>
@@ -70,6 +86,8 @@ export default function Equipo() {
             className={`${styles.card} ${
               persona.destacado ? styles.destacado : ""
             }`}
+            onMouseEnter={() => handleMouseEnter(i)}
+            onMouseLeave={handleMouseLeave}
           >
             <img src={persona.foto} alt={persona.nombre} />
             <h3>{persona.nombre}</h3>

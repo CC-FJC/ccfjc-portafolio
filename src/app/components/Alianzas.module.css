@@ -1,6 +1,8 @@
+/* ====== Sección ====== */
 .section {
   padding: 100px 10%;
   background: #fff;
+  color: var(--color-text, #222);
 }
 
 .sectionTitle {
@@ -9,30 +11,43 @@
   text-align: center;
 }
 
+/* ====== Carrusel infinito ====== */
+/* Ajusta aquí si cambias el tamaño de cada slide o la cantidad total (logos * 2) */
+:root {
+  --slide-w: 200px;        /* ancho de cada tarjeta/logo */
+  --slide-h: 80px;         /* alto máximo visible del logo */
+  --slides-total: 16;      /* 8 logos duplicados => 16 */
+  --speed: 20s;            /* velocidad del scroll */
+}
+
 .slider {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
   width: 100%;
+  /* Suaviza los bordes con un “fade” sutil (opcional) */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
 }
 
 .track {
   display: flex;
-  width: calc(200px * 12);
-  animation: scroll 20s linear infinite;
+  width: calc(var(--slide-w) * var(--slides-total)); /* debe cubrir 2x el set de logos */
+  animation: scroll var(--speed) linear infinite;
+  will-change: transform;
 }
 
 .slide {
-  width: 200px;
-  flex-shrink: 0;
+  width: var(--slide-w);
+  flex: 0 0 var(--slide-w);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding: 15px;
 }
 
 .slide img {
   max-width: 100%;
-  max-height: 80px;
+  max-height: var(--slide-h);
   object-fit: contain;
   filter: grayscale(100%);
   transition: filter 0.3s ease;
@@ -42,11 +57,33 @@
   filter: grayscale(0%);
 }
 
+/* Animación: mueve exactamente una “mitad” (la primera copia) para que no se note el reinicio */
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ====== Responsivo ====== */
+@media (max-width: 1024px) {
+  :root {
+    --slide-w: 170px;
+    --slide-h: 70px;
+    --speed: 18s;
   }
-  100% {
-    transform: translateX(-50%);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --slide-w: 140px;
+    --slide-h: 60px;
+    --speed: 16s;
+  }
+}
+
+/* Accesibilidad: respeta “reducir animaciones” del usuario */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    transform: translateX(0);
   }
 }

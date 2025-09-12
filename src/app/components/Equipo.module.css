@@ -23,8 +23,9 @@
   border-radius: 12px;
   padding: 20px;
   text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.3s ease;
   width: 220px;
+  border: 2px solid transparent; /* invisible por defecto */
 }
 
 .card img {
@@ -50,6 +51,6 @@
 }
 
 .destacado {
-  border: 3px solid var(--color-accent);
+  border: 3px solid var(--color-accent); /* borde rojo dinámico */
   transform: scale(1.05);
 }
