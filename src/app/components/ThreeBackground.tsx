@@ -10,19 +10,14 @@ export default function ThreeBackground() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    let scene: THREE.Scene,
-      camera: THREE.PerspectiveCamera,
-      renderer: THREE.WebGLRenderer,
-      particles: THREE.Points;
-
     let mouseX = 0,
       mouseY = 0;
     const windowHalfX = window.innerWidth / 2;
     const windowHalfY = window.innerHeight / 2;
 
     // Inicializar escena
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
       1,
@@ -45,10 +40,10 @@ export default function ThreeBackground() {
       color: 0x272761,
       size: 2,
     });
-    particles = new THREE.Points(geometry, material);
+    const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
