@@ -1,0 +1,60 @@
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.content {
+  max-width: 900px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.logoContainer {
+  margin-bottom: 30px;
+  perspective: 1000px;
+}
+
+.logo {
+  max-width: 480px;
+  height: auto;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.logoContainer:hover .logo {
+  transform: rotateX(5deg) rotateY(-5deg) scale(1.05);
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+}
+
+.title {
+  font-family: var(--font-headings), sans-serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: var(--color-headings);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.gradientText {
+  background: linear-gradient(
+    90deg,
+    var(--color-orange-1),
+    var(--color-orange-2),
+    var(--color-red-2)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 700px;
+  color: var(--color-text);
+}

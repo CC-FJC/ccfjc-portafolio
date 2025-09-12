@@ -1,0 +1,76 @@
+.section {
+  padding: 100px 10%;
+  background-color: rgba(248, 249, 250, 0.95);
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.tabsNav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.tabButton {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 2px solid var(--color-accent);
+  background: none;
+  color: var(--color-accent);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-weight: 700;
+}
+
+.tabButton:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+.active {
+  background: var(--color-accent);
+  color: white;
+}
+
+.labContent {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.labDescription {
+  flex: 1;
+}
+
+.labDescription li {
+  margin-bottom: 10px;
+  background: rgba(248, 249, 250, 0.95);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.labGallery {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.labGallery img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.labGallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
