@@ -7,7 +7,7 @@ const equipo = [
     nombre: "Dr. Héctor Yovanny Betancur Santa",
     rol: "Director (Doctor en Música)",
     destacado: true,
-    foto: "https://files.catbox.moe/4ucual.png",
+    foto: "https://i.ibb.co/mVXHv2s6/Yovanny.png",
   },
   {
     nombre: "Dra. Sandra Lince",
@@ -37,25 +37,25 @@ const equipo = [
     nombre: "Juana Valentina Bustos",
     rol: "Comunicación de la ciencia",
     destacado: false,
-    foto: "https://files.catbox.moe/7d19t2.png",
+    foto: "https://i.ibb.co/vxscYNGP/juana.png",
   },
   {
     nombre: "Susana Alvarán",
     rol: "Gestora de participación ciudadana",
     destacado: false,
-    foto: "https://files.catbox.moe/3s12cw.png",
+    foto: "https://i.ibb.co/Hk8PC26/Susana.png",
   },
   {
     nombre: "Mateo Quintero",
     rol: "Mediación, prototipado y transferencia",
     destacado: false,
-    foto: "https://files.catbox.moe/qp2ck5.png",
+    foto: "https://i.ibb.co/4RssqBqw/Mateo.png",
   },
   {
     nombre: "Daniel Castillo",
     rol: "Mediación, prototipado y transferencia",
     destacado: false,
-    foto: "https://files.catbox.moe/ert9yp.png",
+    foto: "https://i.ibb.co/sY9kgW9/Daniel.png",
   },
 ];
 

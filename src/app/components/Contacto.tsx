@@ -30,7 +30,7 @@ export default function Contacto() {
         <div className={styles.info}>
           <h3>Centro de Ciencia Francisco José de Caldas</h3>
           <p>
-            Calle 123 #45-67<br />
+            Carrera 28D entre, Cl. 66 #y 67<br />
             Manizales, Colombia
           </p>
           <p>
