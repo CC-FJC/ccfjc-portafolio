@@ -10,10 +10,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "files.catbox.moe",
-        pathname: "/**", // permite cualquier ruta de Catbox
+        pathname: "/**",
       },
     ],
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
