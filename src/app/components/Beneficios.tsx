@@ -1,35 +1,46 @@
 "use client";
 
 import styles from "./Beneficios.module.css";
-import { FaBolt, FaNetworkWired, FaUsers, FaLightbulb } from "react-icons/fa";
+import {
+  FaShieldAlt,
+  FaPiggyBank,
+  FaChartLine,
+  FaAward,
+  FaStar,
+} from "react-icons/fa";
 
 const beneficios = [
   {
-    icon: <FaBolt />,
-    title: "Agilidad",
-    text: "Procesos rápidos de ideación, prototipado y experimentación.",
+    icon: <FaShieldAlt />,
+    title: "Credibilidad y Confianza",
+    text: "Su proyecto cuenta con el respaldo de la máxima autoridad de CTeI en Colombia y de la Universidad de Caldas, fortaleciendo su imagen ante clientes, inversionistas y la comunidad.",
   },
   {
-    icon: <FaNetworkWired />,
-    title: "Red de aliados",
-    text: "Conectamos con universidades, empresas y centros de investigación.",
+    icon: <FaPiggyBank />,
+    title: "Beneficios Tributarios",
+    text: "Las inversiones que su empresa realice en proyectos de I+D+i con nosotros pueden ser elegibles para deducciones y descuentos fiscales, optimizando su retorno de inversión.",
   },
   {
-    icon: <FaUsers />,
-    title: "Trabajo en equipo",
-    text: "Espacios colaborativos para co-crear y resolver desafíos.",
+    icon: <FaChartLine />,
+    title: "Acceso a Financiación",
+    text: "Nos convertimos en su aliado estratégico para postular a convocatorias nacionales e internacionales de CTeI, aumentando drásticamente sus posibilidades de obtener recursos no reembolsables.",
   },
   {
-    icon: <FaLightbulb />,
-    title: "Innovación",
-    text: "Soluciones creativas que conectan ciencia y sociedad.",
+    icon: <FaAward />,
+    title: "Calidad Garantizada",
+    text: "Nuestro reconocimiento certifica que nuestros procesos, metodologías y equipo cumplen con los más altos estándares de calidad, asegurando la rigurosidad y efectividad de nuestras intervenciones.",
+  },
+  {
+    icon: <FaStar />,
+    title: "Experiencia y Experticia",
+    text: "Amplia experiencia trabajando con pequeña, mediana empresa y sector público en proyectos de innovación y desarrollo tecnológico de alto impacto.",
   },
 ];
 
 export default function Beneficios() {
   return (
     <section id="beneficios" className={styles.section}>
-      <h2 className={styles.sectionTitle}>Beneficios</h2>
+      <h2 className={styles.sectionTitle}>Beneficios de trabajar con nosotros</h2>
       <div className={styles.grid}>
         {beneficios.map((b, i) => (
           <div key={i} className={styles.card}>
