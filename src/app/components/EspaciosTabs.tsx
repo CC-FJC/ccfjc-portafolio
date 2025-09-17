@@ -16,9 +16,9 @@ const tabs = {
       "Herramientas de corte y construcción",
     ],
     images: [
-      "./Generated Image September 16, 2025 - 9_34PM.png",
-      "./Maker.jpg",
-      "./Maker 2.jpg",
+      "./Generated-Image-September-16,-2025---9_34PM.png",
+      "./Maker.png",
+      "./Maker-2.png",
     ],
   },
   auditorio: {
@@ -32,10 +32,10 @@ const tabs = {
       "Proyección de alta calidad",
     ],
     images: [
-      "./_DSC1960.jpg",
-      "./Auditorio (1).jpg",
-      "./Auditorio (2).jpg",
-      "./Auditorio(3).jpg"
+      "./_DSC1960.png",
+      "./Auditorio-(1).png",
+      "./Auditorio-(2).png",
+      "./Auditorio(3).png"
 
     ],
   },
@@ -47,9 +47,9 @@ const tabs = {
       "Herramientas de montaje especializado",
     ],
     images: [
-      "./Exposiciones.jpg",
-      "./Exposiciones_2.jpg",
-      "./ExposicionesAlterna.jpg",
+      "./Exposiciones.png",
+      "./Exposiciones_2.png",
+      "./ExposicionesAlterna.png",
     ],
   },
 };
