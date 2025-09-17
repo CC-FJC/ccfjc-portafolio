@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image"; // Importamos el componente de imagen de Next.js
 import styles from "./Contacto.module.css";
 
 export default function Contacto() {
@@ -39,7 +40,19 @@ export default function Contacto() {
           <p>
             <strong>Teléfono:</strong> +57 333 2823909
           </p>
+
+          {/* Aquí insertamos el logo debajo del teléfono */}
+          <div className={styles.logoContainer}>
+            <Image
+              src="/Logo CCFJC + VPU + UCaldas.png" 
+              alt="Logo Centro de Ciencia"
+              width={180}
+              height={180}
+              priority
+            />
+          </div>
         </div>
+
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
             type="text"

@@ -16,12 +16,9 @@ const tabs = {
       "Herramientas de corte y construcción",
     ],
     images: [
-      "https://picsum.photos/seed/3dprinter/400/300",
-      "https://picsum.photos/seed/laser/400/300",
-      "https://picsum.photos/seed/cnc/400/300",
-      "https://picsum.photos/seed/vr/400/300",
-      "https://picsum.photos/seed/arduino/400/300",
-      "https://picsum.photos/seed/workspace/400/300",
+      "./Generated Image September 16, 2025 - 9_34PM.png",
+      "./Maker.jpg",
+      "./Maker 2.jpg",
     ],
   },
   auditorio: {
@@ -35,9 +32,11 @@ const tabs = {
       "Proyección de alta calidad",
     ],
     images: [
-      "https://picsum.photos/seed/auditorium/400/300",
-      "https://picsum.photos/seed/streaming/400/300",
-      "https://picsum.photos/seed/sound/400/300",
+      "./_DSC1960.jpg",
+      "./Auditorio (1).jpg",
+      "./Auditorio (2).jpg",
+      "./Auditorio(3).jpg"
+
     ],
   },
   exposicion: {
@@ -48,9 +47,9 @@ const tabs = {
       "Herramientas de montaje especializado",
     ],
     images: [
-      "https://picsum.photos/seed/gallery/400/300",
-      "https://picsum.photos/seed/art/400/300",
-      "https://picsum.photos/seed/lighting/400/300",
+      "./Exposiciones.jpg",
+      "./Exposiciones_2.jpg",
+      "./ExposicionesAlterna.jpg",
     ],
   },
 };

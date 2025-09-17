@@ -62,3 +62,14 @@
   background: var(--color-headings);
   transform: translateY(-3px);
 }
+
+.logoContainer {
+  margin-top: 1rem;
+  text-align: start;
+}
+
+.logoContainer img {
+  height: 60px;
+  width: auto;
+  max-width: 100%;
+}
