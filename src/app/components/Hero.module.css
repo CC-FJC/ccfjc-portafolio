@@ -1,9 +1,10 @@
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 20px;
 }
 
 .content {
@@ -21,7 +22,7 @@
 }
 
 .logo {
-  max-width: 480px;
+  max-width: 100%;
   height: auto;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
@@ -33,11 +34,11 @@
 
 .title {
   font-family: var(--font-headings), sans-serif;
-  font-size: 4.5rem;
+  font-size: 3rem; /* tamaño base */
   font-weight: 900;
   color: var(--color-headings);
   margin-bottom: 20px;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .gradientText {
@@ -53,8 +54,40 @@
 
 .subtitle {
   font-family: var(--font-body), sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   max-width: 700px;
   color: var(--color-text);
+  padding: 0 10px;
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .logo {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.6rem;
+  }
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  .logo {
+    max-width: 220px;
+  }
 }

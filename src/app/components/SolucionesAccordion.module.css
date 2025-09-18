@@ -1,7 +1,60 @@
 .section {
+  position: relative; /* necesario para el fondo */
   padding: 100px 10%;
-  background-color: #fff;
+  min-height: 100vh;
+  overflow: hidden;
 }
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* evita bloquear clics */
+  background: #ffffff;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(75, 85, 99, 0.08) 19px,
+      rgba(75, 85, 99, 0.08) 20px,
+      transparent 20px,
+      transparent 39px,
+      rgba(75, 85, 99, 0.08) 39px,
+      rgba(75, 85, 99, 0.08) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      rgba(75, 85, 99, 0.08) 19px,
+      rgba(75, 85, 99, 0.08) 20px,
+      transparent 20px,
+      transparent 39px,
+      rgba(75, 85, 99, 0.08) 39px,
+      rgba(75, 85, 99, 0.08) 40px
+    ),
+    radial-gradient(
+      circle at 20px 20px,
+      rgba(55, 65, 81, 0.12) 2px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 40px 40px,
+      rgba(55, 65, 81, 0.12) 2px,
+      transparent 2px
+    );
+  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+}
+
+
+.sectionTitle,
+.accordion {
+  position: relative;
+  z-index: 1; /* contenido por encima del fondo */
+}
+
+/* --- el resto de tus estilos se mantiene igual --- */
 
 .sectionTitle {
   font-size: 2.5rem;
@@ -74,7 +127,6 @@
   padding-left: 20px;
 }
 
-/* Cada servicio tendrá un color distinto */
 .item:nth-child(1) .header {
   color: #e63946; /* rojo */
 }
@@ -88,7 +140,7 @@
   color: #d62839; /* rojo oscuro */
 }
 .item:nth-child(5) .header {
-  color: #e63946; /* rojo, puede cambiar si quieres otro */
+  color: #e63946; /* rojo */
 }
 
 /* Content */

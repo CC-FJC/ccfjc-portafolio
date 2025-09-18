@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image"; // Importamos el componente de imagen de Next.js
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "./Contacto.module.css";
 
 export default function Contacto() {
@@ -12,20 +12,55 @@ export default function Contacto() {
     mensaje: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Consulta enviada:\n${JSON.stringify(formData, null, 2)}`);
-    setFormData({ nombre: "", email: "", servicio: "", mensaje: "" });
+    setLoading(true);
+    setStatus("");
+
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus("✅ Mensaje enviado con éxito. Te contactaremos pronto.");
+        setFormData({ nombre: "", email: "", servicio: "", mensaje: "" });
+      } else {
+        setStatus("❌ Error al enviar el mensaje.");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("❌ Error inesperado.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  // 🔹 Escuchamos los clics en "Cotizar" del acordeón
+  useEffect(() => {
+    const listener = (e: any) => {
+      setFormData((prev) => ({ ...prev, servicio: e.detail }));
+    };
+    document.addEventListener("cotizarServicio", listener);
+    return () => document.removeEventListener("cotizarServicio", listener);
+  }, []);
 
   return (
     <section id="contacto" className={styles.section}>
+      <div className={styles.background}></div>
       <h2 className={styles.sectionTitle}>Contacto</h2>
       <div className={styles.container}>
         <div className={styles.info}>
@@ -40,11 +75,9 @@ export default function Contacto() {
           <p>
             <strong>Teléfono:</strong> +57 333 2823909
           </p>
-
-          {/* Aquí insertamos el logo debajo del teléfono */}
           <div className={styles.logoContainer}>
             <Image
-              src="/Logo CCFJC + VPU + UCaldas.png" 
+              src="/Logo CCFJC + VPU + UCaldas.png"
               alt="Logo Centro de Ciencia"
               width={180}
               height={180}
@@ -86,9 +119,10 @@ export default function Contacto() {
             onChange={handleChange}
             required
           />
-          <button type="submit" className={styles.btn}>
-            Enviar
+          <button type="submit" className={styles.btn} disabled={loading}>
+            {loading ? "Enviando..." : "Enviar"}
           </button>
+          {status && <p className={styles.status}>{status}</p>}
         </form>
       </div>
     </section>

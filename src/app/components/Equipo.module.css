@@ -1,16 +1,34 @@
 .section {
+  position: relative; /* necesario para contener el fondo absoluto */
   padding: 100px 10%;
-  background: var(--color-blue-dark);
+  min-height: 100vh;
   color: white;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #020617;
+  background-image: 
+    linear-gradient(to right, rgba(71,85,105,0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(71,85,105,0.15) 1px, transparent 1px),
+    radial-gradient(circle at 50% 60%, rgba(236,72,153,0.15) 0%, rgba(168,85,247,0.05) 40%, transparent 70%);
+  background-size: 40px 40px, 40px 40px, 100% 100%;
 }
 
 .sectionTitle {
+  position: relative;
+  z-index: 1;
   font-size: 3rem;
   margin-bottom: 50px;
   text-align: center;
 }
 
 .grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
@@ -25,7 +43,7 @@
   text-align: center;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.3s ease;
   width: 220px;
-  border: 2px solid transparent; /* invisible por defecto */
+  border: 2px solid transparent;
 }
 
 .card img {
@@ -51,6 +69,6 @@
 }
 
 .destacado {
-  border: 3px solid var(--color-accent); /* borde rojo dinámico */
+  border: 3px solid var(--color-accent);
   transform: scale(1.05);
 }

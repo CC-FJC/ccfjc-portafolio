@@ -67,17 +67,20 @@ export default function Equipo() {
     setEquipo((prev) =>
       prev.map((p, i) => ({
         ...p,
-        destacado: i === index, // solo uno true
+        destacado: i === index,
       }))
     );
   };
 
   const handleMouseLeave = () => {
-    setEquipo(equipoData); // vuelve al estado inicial
+    setEquipo(equipoData);
   };
 
   return (
     <section id="equipo" className={styles.section}>
+      {/* Fondo Grid Orb */}
+      <div className={styles.background}></div>
+
       <h2 className={styles.sectionTitle}>Nuestro Equipo</h2>
       <div className={styles.grid}>
         {equipo.map((persona, i) => (

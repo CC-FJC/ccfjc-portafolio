@@ -158,14 +158,11 @@ export default function SolucionesAccordion() {
   const [active, setActive] = useState<number | null>(null);
 
   const handleCotizar = (title: string) => {
-    const input = document.getElementById(
-      "servicio-a-consultar"
-    ) as HTMLInputElement | null;
-    const contactoSection = document.getElementById("contacto");
+    // 🔹 Dispara un evento que Contacto.tsx escucha
+    document.dispatchEvent(new CustomEvent("cotizarServicio", { detail: title }));
 
-    if (input) {
-      input.value = title;
-    }
+    // 🔹 Hace scroll al formulario
+    const contactoSection = document.getElementById("contacto");
     if (contactoSection) {
       contactoSection.scrollIntoView({ behavior: "smooth" });
     }
@@ -173,6 +170,9 @@ export default function SolucionesAccordion() {
 
   return (
     <section id="soluciones" className={styles.section}>
+      {/* Fondo Grid Sphere */}
+      <div className={styles.background}></div>
+
       <h2 className={styles.sectionTitle}>Portafolio de Soluciones</h2>
       <div className={styles.accordion}>
         {soluciones.map((s, i) => (
