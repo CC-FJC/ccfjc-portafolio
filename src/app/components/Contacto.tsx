@@ -49,13 +49,16 @@ export default function Contacto() {
     }
   };
 
-  // 🔹 Escuchamos los clics en "Cotizar" del acordeón
+  // 🔹 Escuchamos los clics en "Cotizar" del acordeón con tipado seguro
   useEffect(() => {
-    const listener = (e: any) => {
-      setFormData((prev) => ({ ...prev, servicio: e.detail }));
+    const listener = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      setFormData((prev) => ({ ...prev, servicio: customEvent.detail }));
     };
-    document.addEventListener("cotizarServicio", listener);
-    return () => document.removeEventListener("cotizarServicio", listener);
+
+    document.addEventListener("cotizarServicio", listener as EventListener);
+    return () =>
+      document.removeEventListener("cotizarServicio", listener as EventListener);
   }, []);
 
   return (
