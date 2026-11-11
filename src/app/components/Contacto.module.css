@@ -1,117 +1,142 @@
 .section {
-  position: relative; /* necesario para fondo absoluto */
-  padding: 100px 10%;
-  min-height: 100vh;
+  position: relative;
+  padding: 64px 5%;
+  max-width: 1280px;
+  margin: 0 auto;
   overflow: hidden;
-  background: #f8f9fa;
 }
 
+/* grid punteado en ink sobre el canvas */
 .background {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: #ffffff;
-  background-image: 
+  background: transparent;
+  background-image:
     repeating-linear-gradient(
       0deg,
       transparent,
       transparent 19px,
-      rgba(75, 85, 99, 0.08) 19px,
-      rgba(75, 85, 99, 0.08) 20px,
-      transparent 20px,
-      transparent 39px,
-      rgba(75, 85, 99, 0.08) 39px,
-      rgba(75, 85, 99, 0.08) 40px
+      rgba(22, 22, 53, 0.08) 19px,
+      rgba(22, 22, 53, 0.08) 20px
     ),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 19px,
-      rgba(75, 85, 99, 0.08) 19px,
-      rgba(75, 85, 99, 0.08) 20px,
-      transparent 20px,
-      transparent 39px,
-      rgba(75, 85, 99, 0.08) 39px,
-      rgba(75, 85, 99, 0.08) 40px
+      rgba(22, 22, 53, 0.08) 19px,
+      rgba(22, 22, 53, 0.08) 20px
     ),
     radial-gradient(
       circle at 20px 20px,
-      rgba(55, 65, 81, 0.12) 2px,
-      transparent 2px
-    ),
-    radial-gradient(
-      circle at 40px 40px,
-      rgba(55, 65, 81, 0.12) 2px,
+      rgba(22, 22, 53, 0.12) 2px,
       transparent 2px
     );
-  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+  background-size: 40px 40px, 40px 40px, 40px 40px;
+  mask-image: linear-gradient(to bottom, black 80%, transparent);
 }
 
 .sectionTitle,
 .container {
   position: relative;
-  z-index: 1; /* contenido encima del fondo */
+  z-index: 1;
 }
 
 .sectionTitle {
-  font-size: 3rem;
-  margin-bottom: 50px;
-  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.17;
+  margin-bottom: 40px;
+  text-align: left;
+  color: var(--ink);
+}
+
+.sectionTitle::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--paper);
+  margin-top: 16px;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
+  gap: 20px;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 
 .info {
   flex: 1;
   min-width: 250px;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.6;
+  color: var(--ink);
 }
 
+.info h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+/* formulario dentro de bone card */
 .form {
   flex: 1;
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 8px;
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: inset 0 0 0 0.5px var(--paper);
 }
 
 .form input,
 .form textarea {
-  padding: 12px 15px;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: border 0.3s ease;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 0.5px var(--paper);
+  font-size: 0.875rem;
+  font-family: var(--font-body), sans-serif;
+  color: var(--ink);
+  background: var(--surface);
+  transition: box-shadow 0.2s ease;
 }
 
 .form input:focus,
 .form textarea:focus {
-  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--ink);
   outline: none;
 }
 
+/* unico filled de la seccion */
 .btn {
-  background: var(--color-accent);
-  color: white;
+  background: var(--accent);
+  color: var(--surface);
   border: none;
-  border-radius: 6px;
-  padding: 12px 20px;
-  font-size: 1.1rem;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: background 0.2s ease;
+  margin-top: 8px;
 }
 
 .btn:hover {
-  background: var(--color-headings);
-  transform: translateY(-3px);
+  background: #c81e35;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .logoContainer {
@@ -124,9 +149,10 @@
   width: auto;
   max-width: 100%;
 }
+
 .status {
-  margin-top: 10px;
-  font-size: 0.95rem;
+  margin-top: 8px;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: #333;
+  color: var(--ink);
 }

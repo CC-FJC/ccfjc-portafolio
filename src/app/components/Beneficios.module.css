@@ -1,26 +1,40 @@
 .section {
-  padding: 100px 10%;
-  background: var(--color-bg-alt);
+  padding: 64px 5%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .sectionTitle {
-  font-size: 3rem;
-  margin-bottom: 50px;
-  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.17;
+  margin-bottom: 40px;
+  text-align: left;
+  color: var(--ink);
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--paper);
+  margin-top: 16px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  perspective: 1500px; /* Para el efecto 3D */
+  gap: 20px;
+  perspective: 1500px;
 }
 
 .card {
   background: transparent;
   width: 100%;
   height: 280px;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .inner {
@@ -28,7 +42,7 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 0.6s;
   transform-style: preserve-3d;
 }
 
@@ -47,33 +61,35 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
 }
 
+/* front: bone card plana con hairline */
 .front {
-  background: var(--color-bg);
-  border: 1px solid #e9ecef;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 0.5px var(--paper);
 }
 
 .front h3 {
-  font-size: 1.2rem;
-  color: var(--color-headings);
-  margin-top: 15px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-top: 12px;
 }
 
+/* back: panel inverso en ink */
 .back {
-  background: var(--color-blue-dark);
-  color: white;
+  background: var(--ink);
+  color: var(--surface);
   transform: rotateY(180deg);
 }
 
 .back p {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 
 .icon {
-  font-size: 2.5rem;
-  color: var(--color-orange-1);
+  font-size: 1.25rem;
+  color: var(--accent-2);
 }

@@ -1,3 +1,4 @@
+/* Nav como eje vertical tipo "axis ticks": labels mono, activo en accent */
 .nav {
   position: fixed;
   right: 20px;
@@ -6,39 +7,43 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .item {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 8px;
 }
 
 .label {
-  color: #adb5bd;
-  font-size: 14px;
-  font-weight: bold;
-  margin-right: 10px;
-  transition: all 0.3s ease;
+  color: var(--paper);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
 }
 
+/* data point hollow: 8px, borde 1px ink, relleno transparente */
 .item a {
-  width: 14px;
-  height: 14px;
-  background-color: #ced4da;
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+  border: 1px solid var(--ink);
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   position: relative;
   flex-shrink: 0;
 }
 
 .item.active .label {
-  color: var(--color-accent);
-  transform: scale(1.1);
+  color: var(--accent);
 }
 
 .item.active a {
-  background-color: var(--color-accent);
-  transform: scale(1.6);
+  background-color: var(--accent);
+  border-color: var(--accent);
 }

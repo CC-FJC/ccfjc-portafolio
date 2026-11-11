@@ -1,3 +1,4 @@
+/* Hero sobre el canvas paper-light — panel plano, sin fondo propio */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -8,7 +9,8 @@
 }
 
 .content {
-  max-width: 900px;
+  max-width: 1280px;
+  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -17,7 +19,7 @@
 }
 
 .logoContainer {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
   perspective: 1000px;
 }
 
@@ -27,37 +29,40 @@
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
+/* hover plano: solo una sombra leve (max 6% opacidad segun el sistema) */
 .logoContainer:hover .logo {
-  transform: rotateX(5deg) rotateY(-5deg) scale(1.05);
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+  transform: rotateX(5deg) rotateY(-5deg) scale(1.03);
+  filter: drop-shadow(rgba(22, 22, 53, 0.06) 0px 5px 6px);
 }
 
+/* display 48px, weight 600 */
 .title {
   font-family: var(--font-headings), sans-serif;
-  font-size: 3rem; /* tamaño base */
-  font-weight: 900;
-  color: var(--color-headings);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--ink);
   margin-bottom: 20px;
-  line-height: 1.2;
+  line-height: 1.11;
 }
 
 .gradientText {
   background: linear-gradient(
     90deg,
-    var(--color-orange-1),
-    var(--color-orange-2),
-    var(--color-red-2)
+    var(--accent-2),
+    var(--accent)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* body-lg 16px */
 .subtitle {
   font-family: var(--font-body), sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.44;
   max-width: 700px;
-  color: var(--color-text);
+  color: var(--ink);
+  opacity: 0.75;
   padding: 0 10px;
 }
 
@@ -73,7 +78,7 @@
     font-size: 2rem;
   }
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .logo {
     max-width: 360px;
@@ -85,7 +90,7 @@
     font-size: 1.6rem;
   }
   .subtitle {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
   .logo {
     max-width: 280px;

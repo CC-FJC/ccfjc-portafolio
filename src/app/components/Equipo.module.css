@@ -1,8 +1,10 @@
+/* Seccion clara sobre el canvas, con grid punteado en ink */
 .section {
-  position: relative; /* necesario para contener el fondo absoluto */
-  padding: 100px 10%;
-  min-height: 100vh;
-  color: white;
+  position: relative;
+  padding: 64px 5%;
+  max-width: 1280px;
+  margin: 0 auto;
+  color: var(--ink);
   overflow: hidden;
 }
 
@@ -10,20 +12,34 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: #020617;
-  background-image: 
-    linear-gradient(to right, rgba(71,85,105,0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(71,85,105,0.15) 1px, transparent 1px),
-    radial-gradient(circle at 50% 60%, rgba(236,72,153,0.15) 0%, rgba(168,85,247,0.05) 40%, transparent 70%);
+  pointer-events: none;
+  background: transparent;
+  background-image:
+    linear-gradient(to right, rgba(22, 22, 53, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 22, 53, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 50% 60%, rgba(226, 45, 69, 0.06) 0%, rgba(237, 127, 42, 0.04) 40%, transparent 70%);
   background-size: 40px 40px, 40px 40px, 100% 100%;
+  mask-image: linear-gradient(to bottom, black 80%, transparent);
 }
 
 .sectionTitle {
   position: relative;
   z-index: 1;
-  font-size: 3rem;
-  margin-bottom: 50px;
-  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.17;
+  margin-bottom: 40px;
+  text-align: left;
+  color: var(--ink);
+}
+
+.sectionTitle::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--paper);
+  margin-top: 16px;
 }
 
 .grid {
@@ -31,19 +47,20 @@
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
+  gap: 20px;
   justify-items: center;
 }
 
+/* cards blancas planas con hairline */
 .card {
-  background: white;
-  color: var(--color-text);
+  background: var(--surface);
+  color: var(--ink);
   border-radius: 12px;
   padding: 20px;
   text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.3s ease;
+  transition: box-shadow 0.2s ease;
   width: 220px;
-  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 0.5px var(--paper);
 }
 
 .card img {
@@ -51,24 +68,31 @@
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  box-shadow: inset 0 0 0 0.5px var(--paper);
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    inset 0 0 0 0.5px var(--ink),
+    rgba(22, 22, 53, 0.05) 0px 5px 6px -4px;
 }
 
 .card h3 {
-  margin-bottom: 5px;
-  color: var(--color-accent);
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .card p {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
+  color: var(--paper);
 }
 
+/* destacado: borde en accent, sin escala */
 .destacado {
-  border: 3px solid var(--color-accent);
-  transform: scale(1.05);
+  box-shadow:
+    inset 0 0 0 1px var(--accent),
+    rgba(226, 45, 69, 0.08) 0px 5px 6px -4px;
 }

@@ -13,7 +13,25 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.012em;
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-headings), sans-serif;
+  letter-spacing: 0;
+}
+
+a {
+  color: var(--accent-2);
+}
+
+::selection {
+  background: rgba(226, 45, 69, 0.15);
 }
 
 /* Paleta institucional CCFJC — propuesta redesign (ver DESIGN-CCFJC.md) */

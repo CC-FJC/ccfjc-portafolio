@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
-import { Alegreya_Sans, Lato } from "next/font/google";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const alegreyaSans = Alegreya_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["700", "800", "900"],
+  weight: ["400", "500"],
+  variable: "--font-body",
+});
+
+const interDisplay = Inter({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
   variable: "--font-headings",
 });
 
-const lato = Lato({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-body",
+  weight: ["400", "500"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${alegreyaSans.variable} ${lato.variable}`}>
+    <html lang="es" className={`${inter.variable} ${interDisplay.variable} ${plexMono.variable}`}>
       <body>{children}</body>
     </html>
   );
