@@ -9,10 +9,10 @@ export default function Hero() {
       <div className={styles.content}>
         <div className={styles.logoContainer}>
           <Image
-            src="https://ia601206.us.archive.org/32/items/ccfjc-logo-color/CCFJC%20Logo%20Color%20.png"
+            src="/logo.png"
             alt="Logo Centro de Ciencia Francisco José de Caldas"
-            width={480}
-            height={200}
+            width={600}
+            height={600}
             className={styles.logo}
             priority
           />
