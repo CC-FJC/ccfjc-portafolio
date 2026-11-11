@@ -12,13 +12,7 @@
 }
 
 /* ====== Carrusel infinito ====== */
-/* Ajusta aquí si cambias el tamaño de cada slide o la cantidad total (logos * 2) */
-:root {
-  --slide-w: 200px;        /* ancho de cada tarjeta/logo */
-  --slide-h: 80px;         /* alto máximo visible del logo */
-  --slides-total: 16;      /* 8 logos duplicados => 16 */
-  --speed: 20s;            /* velocidad del scroll */
-}
+/* Las variables --slide-w, --slide-h, --slides-total y --speed viven en globals.css */
 
 .slider {
   position: relative;
@@ -63,22 +57,7 @@
   100% { transform: translateX(-50%); }
 }
 
-/* ====== Responsivo ====== */
-@media (max-width: 1024px) {
-  :root {
-    --slide-w: 170px;
-    --slide-h: 70px;
-    --speed: 18s;
-  }
-}
-
-@media (max-width: 640px) {
-  :root {
-    --slide-w: 140px;
-    --slide-h: 60px;
-    --speed: 16s;
-  }
-}
+/* ====== Responsivo (las variables --slide-* se ajustan en globals.css) ====== */
 
 /* Accesibilidad: respeta “reducir animaciones” del usuario */
 @media (prefers-reduced-motion: reduce) {

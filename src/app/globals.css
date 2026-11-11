@@ -30,3 +30,28 @@ body {
   --color-headings: var(--color-blue-dark);
   --color-accent: var(--color-red-1);
 }
+
+/* ====== Carrusel de alianzas ====== */
+/* Ajusta aquí si cambias el tamaño de cada slide o la cantidad total (logos * 2) */
+:root {
+  --slide-w: 200px;        /* ancho de cada tarjeta/logo */
+  --slide-h: 80px;         /* alto máximo visible del logo */
+  --slides-total: 16;      /* 8 logos duplicados => 16 */
+  --speed: 20s;            /* velocidad del scroll */
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --slide-w: 170px;
+    --slide-h: 70px;
+    --speed: 18s;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --slide-w: 140px;
+    --slide-h: 60px;
+    --speed: 16s;
+  }
+}
