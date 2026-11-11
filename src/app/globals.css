@@ -10,25 +10,33 @@ html {
 }
 
 body {
-  background-color: #ffffff;
-  color: #343a40;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body), sans-serif;
   overflow-x: hidden;
 }
 
-/* Variables institucionales */
+/* Paleta institucional CCFJC — propuesta redesign (ver DESIGN-CCFJC.md) */
 :root {
-  --color-orange-1: #f89a30;
-  --color-orange-2: #f48338;
-  --color-red-1: #ec3a50;
-  --color-red-2: #ec4237;
-  --color-blue-dark: #272761;
-  --color-blue-light: #3273a5;
+  /* Paleta base */
+  --ink: #161635;         /* azul noche: texto principal, iconos, strokes (antes Forest Ink) */
+  --paper: #7f7f7f7;       /* gris institucional: hairlines, metadata, bordes */
+  --paper-light: #f4f4f4; /* canvas de pagina: tinte claro de --paper */
+  --accent: #e22d45;      /* rojo institucional: unico CTA filled (antes Moss) */
+  --accent-2: #ed7f2a;    /* naranja institucional: links, tags, acentos (antes Deep Fern) */
+  --surface: #ffffff;     /* cards y paneles (Bone White) */
 
-  --color-bg: #ffffff;
-  --color-text: #343a40;
-  --color-headings: var(--color-blue-dark);
-  --color-accent: var(--color-red-1);
+  /* Variables consumidas por los componentes, mapeadas a la nueva paleta */
+  --color-orange-1: var(--accent-2);
+  --color-orange-2: var(--accent-2);
+  --color-red-1: var(--accent);
+  --color-red-2: var(--accent);
+  --color-blue-dark: var(--ink);
+  --color-blue-light: var(--accent-2);
+  --color-bg: var(--paper-light);
+  --color-text: var(--ink);
+  --color-headings: var(--ink);
+  --color-accent: var(--accent);
 }
 
 /* ====== Carrusel de alianzas ====== */

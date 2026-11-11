@@ -37,7 +37,7 @@ export default function ThreeBackground() {
 
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     const material = new THREE.PointsMaterial({
-      color: 0x272761,
+      color: 0x161635,
       size: 2,
     });
     const particles = new THREE.Points(geometry, material);
