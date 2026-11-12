@@ -169,7 +169,7 @@ export default function SolucionesAccordion() {
   };
 
   return (
-    <section id="soluciones" className={styles.section} data-axis="04">
+    <section id="soluciones" className={styles.section} data-axis="04" data-sheet>
       {/* Fondo Grid Sphere */}
       <div className={styles.background}></div>
 

@@ -62,7 +62,7 @@ export default function Contacto() {
   }, []);
 
   return (
-    <section id="contacto" className={styles.section} data-axis="09">
+    <section id="contacto" className={styles.section} data-axis="09" data-sheet>
       <div className={styles.background}></div>
       <h2 className={styles.sectionTitle}>Contacto</h2>
       <div className={styles.container}>
