@@ -84,6 +84,12 @@ La firma visual: etiquetas tipo `[ VALORES ]` en mono, uppercase, letter-spacing
 | **FloatingNav** | Se rediseña como eje vertical tipo "axis ticks": números mono 11px en `#7f7f7f7`, activo en `#e22d45` con línea hairline vertical |
 | **Fondo 3D** | Partículas `#161635` ya aplicado; opcional: reducir opacidad sobre el canvas claro para no competir con el texto |
 
+> **Actualización (rama `redesign`):** el material particulado (Three.js) se reemplazó
+> por `ScrollCanvas.tsx` — un scatter plot / timeline en canvas fijo que se **dibuja
+> progresivamente según el progreso del scroll** (puntos hollow ink + data marks en
+> `#e22d45`, ejes hairline `#7f7f7f7`, grid punteado). Cada sección lleva etiqueta de
+> eje `[ 0X ]` vía `data-axis` + CSS, y las cards numeran con counters `[ 01 ]`.
+
 ## 5. Do's and Don'ts (adaptados)
 
 ### Do

@@ -39,7 +39,7 @@ const beneficios = [
 
 export default function Beneficios() {
   return (
-    <section id="beneficios" className={styles.section}>
+    <section id="beneficios" className={styles.section} data-axis="05">
       <h2 className={styles.sectionTitle}>Beneficios de trabajar con nosotros</h2>
       <div className={styles.grid}>
         {beneficios.map((b, i) => (

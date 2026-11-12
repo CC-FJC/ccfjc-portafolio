@@ -15,7 +15,7 @@ const logos = [
 
 export default function Alianzas() {
   return (
-    <section id="alianzas" className={styles.section}>
+    <section id="alianzas" className={styles.section} data-axis="07">
       <h2 className={styles.sectionTitle}>Ecosistema y Alianzas</h2>
       <div className={styles.slider}>
         <div className={styles.track}>

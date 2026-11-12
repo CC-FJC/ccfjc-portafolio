@@ -27,6 +27,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  counter-reset: card;
+}
+
+.card::before {
+  counter-increment: card;
+  content: "[ 0" counter(card) " ]";
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent-2);
+  margin-bottom: 8px;
 }
 
 .card {

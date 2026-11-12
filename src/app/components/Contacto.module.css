@@ -69,19 +69,27 @@
   align-items: flex-start;
 }
 
+/* Info como dark inverse panel (bloque terminal en ink) */
 .info {
   flex: 1;
   min-width: 250px;
   font-size: 0.875rem;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--surface);
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 20px;
 }
 
 .info h3 {
   font-size: 1.125rem;
   font-weight: 500;
-  color: var(--ink);
+  color: var(--surface);
   margin-bottom: 8px;
+}
+
+.info strong {
+  color: var(--accent-2);
 }
 
 /* formulario dentro de bone card */

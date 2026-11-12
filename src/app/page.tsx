@@ -1,6 +1,6 @@
 import Hero from "./components/Hero";
 import FloatingNav from "./components/FloatingNav";
-import ThreeBackground from "./components/ThreeBackground";
+import ScrollCanvas from "./components/ScrollCanvas";
 import Valores from "./components/Valores";
 import EspaciosTabs from "./components/EspaciosTabs";
 import SolucionesAccordion from "./components/SolucionesAccordion";
@@ -13,7 +13,7 @@ import Contacto from "./components/Contacto";
 export default function Home() {
   return (
     <>
-      <ThreeBackground />
+      <ScrollCanvas />
       <FloatingNav />
       <main>
         <Hero />

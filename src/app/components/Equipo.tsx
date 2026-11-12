@@ -77,7 +77,7 @@ export default function Equipo() {
   };
 
   return (
-    <section id="equipo" className={styles.section}>
+    <section id="equipo" className={styles.section} data-axis="08">
       {/* Fondo Grid Orb */}
       <div className={styles.background}></div>
 

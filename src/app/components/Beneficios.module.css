@@ -28,6 +28,17 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   perspective: 1500px;
+  counter-reset: card;
+}
+
+.front::before {
+  counter-increment: card;
+  content: "[ 0" counter(card) " ]";
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent-2);
+  margin-bottom: 8px;
 }
 
 .card {

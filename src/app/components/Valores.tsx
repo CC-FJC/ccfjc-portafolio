@@ -33,7 +33,7 @@ const valores = [
 
 export default function Valores() {
   return (
-    <section id="valores" className={styles.section}>
+    <section id="valores" className={styles.section} data-axis="02">
       <h2 className={styles.sectionTitle}>Nuestros Valores</h2>
       <div className={styles.grid}>
         {valores.map((v, i) => (

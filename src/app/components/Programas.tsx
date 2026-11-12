@@ -19,7 +19,7 @@ const programas = [
 
 export default function Programas() {
   return (
-    <section id="programas" className={styles.section}>
+    <section id="programas" className={styles.section} data-axis="06">
       <h2 className={styles.sectionTitle}>Programas</h2>
       <div className={styles.grid}>
         {programas.map((p, i) => (

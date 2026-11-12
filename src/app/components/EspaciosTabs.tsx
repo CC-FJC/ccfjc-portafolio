@@ -58,7 +58,7 @@ export default function EspaciosTabs() {
   const [active, setActive] = useState<keyof typeof tabs>("makerspace");
 
   return (
-    <section id="espacios" className={styles.section}>
+    <section id="espacios" className={styles.section} data-axis="03">
       <h2 className={styles.sectionTitle}>Nuestros Espacios y Laboratorio</h2>
       <div className={styles.tabsNav}>
         {Object.keys(tabs).map((key) => (
