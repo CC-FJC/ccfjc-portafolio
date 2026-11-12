@@ -39,6 +39,12 @@
   text-align: left;
   box-shadow: inset 0 0 0 0.5px var(--paper);
   transition: box-shadow 0.2s ease;
+  /* icono a la izquierda del texto, no encima */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 8px;
+  align-items: start;
 }
 
 .card:hover {
@@ -48,24 +54,29 @@
     rgba(127, 127, 127, 0.08) 0px 1px 1px 0.5px;
 }
 
-/* iconos monoline 16-20px en ink */
+/* iconos monoline 16-20px en ink, columna izquierda */
 .icon {
+  grid-row: 1 / span 2;
   font-size: 1.25rem;
+  line-height: 1;
   color: var(--ink);
-  margin-bottom: 12px;
+  padding-top: 2px;
 }
 
 /* subheading 18px en ink */
 .card h3 {
+  grid-column: 2;
   color: var(--ink);
   font-size: 1.125rem;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
 .card p {
+  grid-column: 2;
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--ink);
   opacity: 0.75;
+  margin: 0;
 }

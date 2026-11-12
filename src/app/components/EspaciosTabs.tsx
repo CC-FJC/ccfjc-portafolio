@@ -1,9 +1,12 @@
-"use client";
-
-import { useState } from "react";
 import styles from "./EspaciosTabs.module.css";
 
-const tabs = {
+/* Los espacios se recorren con el scroll: cada uno es un bloque con
+   su titulo-tag, sus items en chips y una galeria masonry asimetrica */
+
+const espacios: Record<
+  string,
+  { title: string; items: string[]; images: string[] }
+> = {
   makerspace: {
     title: "MakerSpace",
     items: [
@@ -35,8 +38,7 @@ const tabs = {
       "./_DSC1960.png",
       "./Auditorio-(1).png",
       "./Auditorio-(2).png",
-      "./Auditorio(3).png"
-
+      "./Auditorio(3).png",
     ],
   },
   exposicion: {
@@ -55,39 +57,31 @@ const tabs = {
 };
 
 export default function EspaciosTabs() {
-  const [active, setActive] = useState<keyof typeof tabs>("makerspace");
-
   return (
     <section id="espacios" className={styles.section} data-axis="03">
       <h2 className={styles.sectionTitle}>Nuestros Espacios y Laboratorio</h2>
-      <div className={styles.tabsNav}>
-        {Object.keys(tabs).map((key) => (
-          <button
-            key={key}
-            className={`${styles.tabButton} ${
-              active === key ? styles.active : ""
-            }`}
-            onClick={() => setActive(key as keyof typeof tabs)}
-          >
-            {tabs[key as keyof typeof tabs].title}
-          </button>
-        ))}
-      </div>
-      <div className={styles.tabContent}>
-        <div className={styles.labContent}>
-          <div className={styles.labDescription}>
-            <ul>
-              {tabs[active].items.map((item, i) => (
+      <div className={styles.spaces}>
+        {Object.entries(espacios).map(([key, s]) => (
+          <div key={key} className={styles.space} data-space={key}>
+            <h3 className={styles.spaceTitle}>{s.title}</h3>
+            <ul className={styles.items}>
+              {s.items.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
+            <div className={styles.masonry}>
+              {s.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`${s.title} ${i + 1}`}
+                  className={styles.photo}
+                  loading="lazy"
+                />
+              ))}
+            </div>
           </div>
-          <div className={styles.labGallery}>
-            {tabs[active].images.map((img, i) => (
-              <img key={i} src={img} alt={`${tabs[active].title} ${i + 1}`} />
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );

@@ -23,82 +23,187 @@
   margin-top: 16px;
 }
 
-/* Tabs como tags: radius 4px, hairline; activo = fill ink */
-.tabsNav {
+/* ====== Espacios apilados: el scroll recorre cada uno ====== */
+.spaces {
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 32px;
+  flex-direction: column;
+  gap: 48px;
 }
 
-.tabButton {
-  padding: 8px 16px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: var(--ink);
-  border-radius: 4px;
-  box-shadow: inset 0 0 0 0.5px var(--paper);
-  transition: all 0.2s ease;
-  font-weight: 500;
-  font-size: 0.875rem;
+.space {
+  padding-top: 8px;
+}
+
+.space + .space {
+  border-top: 1px dotted var(--paper);
+  padding-top: 40px;
+}
+
+/* titulo de cada espacio como specimen tag mono en naranja */
+.spaceTitle {
   font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15em;
+  color: var(--accent-2);
+  margin-bottom: 16px;
 }
 
-.tabButton:hover {
-  box-shadow: inset 0 0 0 0.5px var(--ink);
-}
-
-.active {
-  background: var(--ink);
-  color: var(--surface);
-  box-shadow: none;
-}
-
-.labContent {
+/* items en chips bone hairline */
+.items {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
   flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
 }
 
-.labDescription {
-  flex: 1;
-  min-width: 260px;
-}
-
-/* items como chips sobre card */
-.labDescription li {
-  margin-bottom: 8px;
+.items li {
   background: var(--surface);
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 4px;
   box-shadow: inset 0 0 0 0.5px var(--paper);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--ink);
 }
 
-.labGallery {
-  flex: 2;
+/* ====== Galeria masonry asimetrica ====== */
+.masonry {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 150px;
   gap: 8px;
 }
 
-.labGallery img {
+.photo {
   width: 100%;
-  height: 150px;
+  height: 100%;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: inset 0 0 0 0.5px var(--paper);
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.3s ease;
 }
 
-.labGallery img:hover {
+.photo:hover {
   box-shadow:
-    inset 0 0 0 0.5px var(--paper),
+    inset 0 0 0 0.5px var(--ink),
     rgba(22, 22, 53, 0.05) 0px 5px 6px -4px;
+}
+
+/* composicion: la primera foto es grande (2x2) */
+.photo:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* con 3 fotos: la segunda es vertical (columna derecha completa) */
+.photo:nth-child(2):nth-last-child(2) {
+  grid-row: span 2;
+}
+
+/* la ultima foto siempre es una franja ancha a todo el ancho */
+.photo:nth-child(3):nth-last-child(1),
+.photo:nth-child(4):nth-last-child(1) {
+  grid-column: 1 / -1;
+  grid-row: auto;
+}
+
+/* ====== Movimiento durante el scroll (progressivo, no temporizado) ====== */
+@supports (animation-timeline: view()) {
+  .space {
+    animation: space-in ease both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+
+  .photo {
+    animation: photo-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  .photo:nth-child(2n) {
+    animation-name: photo-rise-alt;
+  }
+
+  .photo:nth-child(1) {
+    animation-name: photo-rise-hero;
+  }
+}
+
+@keyframes space-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* foto grande: crece desde arriba */
+@keyframes photo-rise-hero {
+  from {
+    opacity: 0;
+    transform: translateY(56px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* foto pares: suben con una inclinacion leve */
+@keyframes photo-rise {
+  from {
+    opacity: 0;
+    transform: translateY(44px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes photo-rise-alt {
+  from {
+    opacity: 0;
+    transform: translateY(64px) rotate(-1deg) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 900px) {
+  .masonry {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 130px;
+  }
+
+  .photo:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .photo:nth-child(2):nth-last-child(2) {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .masonry {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 180px;
+  }
+
+  .photo:nth-child(1) {
+    grid-column: auto;
+    grid-row: auto;
+  }
 }
