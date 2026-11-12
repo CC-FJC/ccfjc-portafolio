@@ -49,18 +49,6 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   justify-items: center;
-  counter-reset: card;
-}
-
-.card::before {
-  counter-increment: card;
-  content: "[ 0" counter(card) " ]";
-  display: block;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--accent-2);
-  margin-bottom: 8px;
 }
 
 /* cards blancas planas con hairline */
