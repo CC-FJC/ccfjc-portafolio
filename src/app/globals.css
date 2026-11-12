@@ -17,6 +17,8 @@ body {
   line-height: 1.5;
   letter-spacing: 0.012em;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -32,6 +34,16 @@ a {
 
 ::selection {
   background: rgba(226, 45, 69, 0.15);
+}
+
+/* foco accesible consistente con el sistema: hairline accent */
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: var(--font-body), sans-serif;
 }
 
 /* ====== Axis bracket labels (sistema page-as-chart) ====== */

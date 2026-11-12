@@ -45,7 +45,7 @@
   font-size: 0.875rem;
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
 }
 
 .tabButton:hover {

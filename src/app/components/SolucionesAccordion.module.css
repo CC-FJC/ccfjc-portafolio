@@ -116,6 +116,18 @@
   font-size: 1.25rem;
 }
 
+/* simbolo +/x del header: mono, gris; accent en activo */
+.header > span:last-child {
+  font-family: var(--font-mono), monospace;
+  font-size: 1rem;
+  color: var(--paper);
+  transition: color 0.2s ease;
+}
+
+.item.active .header > span:last-child {
+  color: var(--accent);
+}
+
 .content {
   overflow: hidden;
   transition: max-height 0.4s ease;

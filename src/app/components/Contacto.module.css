@@ -79,6 +79,7 @@
   background: var(--ink);
   border-radius: 12px;
   padding: 20px;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
 }
 
 .info h3 {

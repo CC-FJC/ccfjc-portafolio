@@ -124,15 +124,26 @@ export default function ScrollCanvas() {
         ctx.stroke();
       }
 
-      // Data points: hollow (stroke ink) o filled (accent)
+      // Data points: hollow (stroke ink) o filled (accent, con halo e inner dot)
       for (let i = 0; i < full; i++) {
         const p = pts[i];
         const X = px(p);
         const Y = py(p);
         if (p.filled) {
+          // halo suave (rol "muted sage" -> tinte rojo institucional)
+          ctx.fillStyle = `rgba(${ACCENT},0.08)`;
+          ctx.beginPath();
+          ctx.arc(X, Y, p.r * 2.4, 0, Math.PI * 2);
+          ctx.fill();
+          // marca llena
           ctx.fillStyle = `rgba(${ACCENT},0.9)`;
           ctx.beginPath();
           ctx.arc(X, Y, p.r * 0.8, 0, Math.PI * 2);
+          ctx.fill();
+          // inner dot (timeline node)
+          ctx.fillStyle = "rgba(255,255,255,0.9)";
+          ctx.beginPath();
+          ctx.arc(X, Y, Math.max(1, p.r * 0.25), 0, Math.PI * 2);
           ctx.fill();
         } else {
           ctx.fillStyle = "rgba(255,255,255,0.9)";
@@ -145,12 +156,16 @@ export default function ScrollCanvas() {
         }
       }
 
-      // Punto parcial: el siguiente data point que aparece al scrollear
+      // Punto actual: nodo con anillo mientras el scroll lo dibuja
       if (full < N && frac > 0.01) {
         const p = pts[full];
         ctx.globalAlpha = frac;
-        ctx.strokeStyle = `rgba(${INK},0.55)`;
+        ctx.strokeStyle = `rgba(${ACCENT},0.8)`;
         ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(px(p), py(p), p.r + 3, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.strokeStyle = `rgba(${INK},0.55)`;
         ctx.beginPath();
         ctx.arc(px(p), py(p), p.r, 0, Math.PI * 2);
         ctx.stroke();
