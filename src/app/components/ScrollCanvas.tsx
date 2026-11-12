@@ -32,6 +32,21 @@ export default function ScrollCanvas() {
     let w = 0;
     let h = 0;
 
+    // El primer nodo vive en el centro del logo del Hero
+    // (el canvas es fixed, asi que las coords del viewport son validas)
+    let logoPos = { x: 0, y: 0 };
+    const readLogoPos = () => {
+      const logo = document.querySelector<HTMLElement>(
+        "#hero img[class*='logo']"
+      );
+      if (logo) {
+        const r = logo.getBoundingClientRect();
+        logoPos = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      } else {
+        logoPos = { x: w / 2, y: h / 2 };
+      }
+    };
+
     const resize = () => {
       w = window.innerWidth;
       h = window.innerHeight;
@@ -40,6 +55,7 @@ export default function ScrollCanvas() {
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      readLogoPos();
     };
     resize();
     window.addEventListener("resize", resize);
@@ -47,7 +63,7 @@ export default function ScrollCanvas() {
     // Puntos del scatter (deterministicos)
     const rand = mulberry32(20261111);
     const N = 90;
-    const INITIAL_CONNECTED = 3; // nodos unidos por la linea al cargar la pagina
+    const INITIAL_CONNECTED = 0; // sin lineas en la parte superior; la primera nace del logo
     const INITIAL_VISIBLE = 12; // nodos visibles desde el inicio
     const LEAD = 14; // nodos visibles por delante de la punta de la linea
     const pts = Array.from({ length: N }, () => ({
@@ -71,6 +87,10 @@ export default function ScrollCanvas() {
 
     const px = (p: { x: number; y: number }) => 60 + p.x * (w - 120);
     const py = (p: { x: number; y: number }) => 60 + (1 - p.y) * (h - 120);
+
+    // posicion de un nodo: el nodo 0 es el centro del logo
+    const P = (i: number): { x: number; y: number } =>
+      i === 0 ? logoPos : { x: px(pts[i]), y: py(pts[i]) };
 
     const draw = () => {
       // Interaccion con el scroll: la linea se dibuja siguiendo el avance
@@ -116,24 +136,24 @@ export default function ScrollCanvas() {
         Math.min(N, linePos + LEAD)
       );
 
-      // Timeline: conecta los nodos revelados en orden
-      if (full > 0) {
+      // Timeline: conecta los nodos revelados en orden; en el top (progress 0)
+      // no hay lineas: solo el moveTo del nodo logo, que no dibuja nada
+      {
         ctx.strokeStyle = `rgba(${INK},0.35)`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         const last = Math.min(full, N - 1);
         for (let i = 0; i <= last; i++) {
-          const X = px(pts[i]);
-          const Y = py(pts[i]);
-          if (i === 0) ctx.moveTo(X, Y);
-          else ctx.lineTo(X, Y);
+          const c = P(i);
+          if (i === 0) ctx.moveTo(c.x, c.y);
+          else ctx.lineTo(c.x, c.y);
         }
         if (frac > 0.02 && full < N - 1) {
-          const a = pts[full];
-          const b = pts[full + 1];
+          const a = P(full);
+          const b = P(full + 1);
           ctx.lineTo(
-            px(a) + (px(b) - px(a)) * frac,
-            py(a) + (py(b) - py(a)) * frac
+            a.x + (b.x - a.x) * frac,
+            a.y + (b.y - a.y) * frac
           );
         }
         ctx.stroke();
@@ -144,8 +164,9 @@ export default function ScrollCanvas() {
       const lastVisible = Math.min(N - 1, Math.floor(visibleCount));
       for (let i = 0; i <= lastVisible; i++) {
         const p = pts[i];
-        const X = px(p);
-        const Y = py(p);
+        const c = P(i);
+        const X = c.x;
+        const Y = c.y;
         ctx.globalAlpha = Math.min(1, (visibleCount - i) / 2);
         if (p.filled) {
           // halo suave (rol "muted sage" -> tinte rojo institucional)
@@ -178,15 +199,16 @@ export default function ScrollCanvas() {
       // Punta de la linea: el nodo al que se acerca lleva el anillo accent
       if (full < N - 1 && frac > 0.02) {
         const p = pts[full + 1];
+        const c = P(full + 1);
         ctx.globalAlpha = frac;
         ctx.strokeStyle = `rgba(${ACCENT},0.8)`;
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.arc(px(p), py(p), p.r + 3, 0, Math.PI * 2);
+        ctx.arc(c.x, c.y, p.r + 3, 0, Math.PI * 2);
         ctx.stroke();
         ctx.strokeStyle = `rgba(${INK},0.55)`;
         ctx.beginPath();
-        ctx.arc(px(p), py(p), p.r, 0, Math.PI * 2);
+        ctx.arc(c.x, c.y, p.r, 0, Math.PI * 2);
         ctx.stroke();
         ctx.globalAlpha = 1;
       }
