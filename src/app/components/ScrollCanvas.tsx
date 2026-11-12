@@ -47,6 +47,9 @@ export default function ScrollCanvas() {
     // Puntos del scatter (deterministicos)
     const rand = mulberry32(20261111);
     const N = 90;
+    const INITIAL_CONNECTED = 3; // nodos unidos por la linea al cargar la pagina
+    const INITIAL_VISIBLE = 12; // nodos visibles desde el inicio
+    const LEAD = 14; // nodos visibles por delante de la punta de la linea
     const pts = Array.from({ length: N }, () => ({
       x: rand(),
       y: rand(),
@@ -98,24 +101,36 @@ export default function ScrollCanvas() {
         }
       }
 
-      const visible = current * N;
-      const full = Math.floor(visible);
-      const frac = visible - full;
+      // La linea avanza con el scroll desde los nodos iniciales
+      const linePos = Math.min(
+        N - 1,
+        current * (N - INITIAL_CONNECTED) + INITIAL_CONNECTED
+      );
+      const full = Math.floor(linePos);
+      const frac = linePos - full;
 
-      // Timeline: conecta los puntos revelados en orden
+      // Ventana de visibilidad: desde el inicio solo un grupo, luego la linea
+      // siempre tiene LEAD nodos visibles por delante a los que ira uniendose
+      const visibleCount = Math.max(
+        INITIAL_VISIBLE,
+        Math.min(N, linePos + LEAD)
+      );
+
+      // Timeline: conecta los nodos revelados en orden
       if (full > 0) {
         ctx.strokeStyle = `rgba(${INK},0.35)`;
         ctx.lineWidth = 1;
         ctx.beginPath();
-        for (let i = 0; i < full; i++) {
+        const last = Math.min(full, N - 1);
+        for (let i = 0; i <= last; i++) {
           const X = px(pts[i]);
           const Y = py(pts[i]);
           if (i === 0) ctx.moveTo(X, Y);
           else ctx.lineTo(X, Y);
         }
-        if (full < N) {
-          const a = pts[full - 1];
-          const b = pts[full];
+        if (frac > 0.02 && full < N - 1) {
+          const a = pts[full];
+          const b = pts[full + 1];
           ctx.lineTo(
             px(a) + (px(b) - px(a)) * frac,
             py(a) + (py(b) - py(a)) * frac
@@ -124,11 +139,14 @@ export default function ScrollCanvas() {
         ctx.stroke();
       }
 
-      // Data points: hollow (stroke ink) o filled (accent, con halo e inner dot)
-      for (let i = 0; i < full; i++) {
+      // Nodos visibles: solo la ventana actual; cada nodo hace fade-in al
+      // entrar y permanece dibujado (unido o por unirse)
+      const lastVisible = Math.min(N - 1, Math.floor(visibleCount));
+      for (let i = 0; i <= lastVisible; i++) {
         const p = pts[i];
         const X = px(p);
         const Y = py(p);
+        ctx.globalAlpha = Math.min(1, (visibleCount - i) / 2);
         if (p.filled) {
           // halo suave (rol "muted sage" -> tinte rojo institucional)
           ctx.fillStyle = `rgba(${ACCENT},0.08)`;
@@ -154,11 +172,12 @@ export default function ScrollCanvas() {
           ctx.fill();
           ctx.stroke();
         }
+        ctx.globalAlpha = 1;
       }
 
-      // Punto actual: nodo con anillo mientras el scroll lo dibuja
-      if (full < N && frac > 0.01) {
-        const p = pts[full];
+      // Punta de la linea: el nodo al que se acerca lleva el anillo accent
+      if (full < N - 1 && frac > 0.02) {
+        const p = pts[full + 1];
         ctx.globalAlpha = frac;
         ctx.strokeStyle = `rgba(${ACCENT},0.8)`;
         ctx.lineWidth = 1;
