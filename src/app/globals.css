@@ -82,7 +82,8 @@ section[data-sheet] {
   position: relative;
   z-index: 1;
   max-width: none;
-  margin: 64px 2% 0;
+  /* margen lateral amplio: la hoja no toca los bordes de la pagina */
+  margin: 64px 5% 0;
   background: var(--surface);
   border-radius: 24px 24px 0 0;
   box-shadow:

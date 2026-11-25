@@ -1,5 +1,4 @@
 import Hero from "./components/Hero";
-import FloatingNav from "./components/FloatingNav";
 import ScrollCanvas from "./components/ScrollCanvas";
 import Valores from "./components/Valores";
 import EspaciosTabs from "./components/EspaciosTabs";
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <>
       <ScrollCanvas />
-      <FloatingNav />
       <main>
         <Hero />
         <Valores />

@@ -84,6 +84,7 @@ export default function ScrollCanvas() {
     readScroll();
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let t = 0; // reloj para la respiracion de los nodos
 
     const px = (p: { x: number; y: number }) => 60 + p.x * (w - 120);
     const py = (p: { x: number; y: number }) => 60 + (1 - p.y) * (h - 120);
@@ -93,6 +94,7 @@ export default function ScrollCanvas() {
       i === 0 ? logoPos : { x: px(pts[i]), y: py(pts[i]) };
 
     const draw = () => {
+      t += 1 / 60;
       // Interaccion con el scroll: la linea se dibuja siguiendo el avance
       if (reduced) {
         current = target;
@@ -185,11 +187,14 @@ export default function ScrollCanvas() {
           ctx.arc(X, Y, Math.max(1, p.r * 0.25), 0, Math.PI * 2);
           ctx.fill();
         } else {
+          // efecto de respiracion: cada nodo inhala/exhala con su propia fase
+          const breathe = reduced ? 0 : Math.sin(t * 1.6 + i * 0.9);
+          const r = p.r * (1 + breathe * 0.13);
           ctx.fillStyle = "rgba(255,255,255,0.9)";
-          ctx.strokeStyle = `rgba(${INK},0.55)`;
+          ctx.strokeStyle = `rgba(${INK},${0.55 - breathe * 0.15})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.arc(X, Y, p.r, 0, Math.PI * 2);
+          ctx.arc(X, Y, r, 0, Math.PI * 2);
           ctx.fill();
           ctx.stroke();
         }
