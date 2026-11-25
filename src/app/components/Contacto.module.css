@@ -61,16 +61,21 @@
   margin-top: 16px;
 }
 
-/* apiladas: primero info de contacto, luego el formulario */
+/* dos columnas: info de contacto | formulario, siempre de la misma altura */
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  justify-content: flex-start;
   align-items: stretch;
 }
 
-/* Info como dark inverse panel (bloque terminal en ink) */
+@media (max-width: 860px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Info como dark inverse panel (bloque terminal en ink), contenido centrado */
 .info {
   flex: 1;
   min-width: 250px;
@@ -79,8 +84,26 @@
   color: var(--surface);
   background: var(--ink);
   border-radius: 12px;
-  padding: 20px;
+  padding: 24px;
   box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* fila de dato con icono */
+.contactRow {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.contactRow .icon {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  color: var(--accent-2);
+  margin-top: 3px;
 }
 
 .info h3 {

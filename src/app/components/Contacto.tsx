@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 import styles from "./Contacto.module.css";
 
 export default function Contacto() {
@@ -67,15 +68,24 @@ export default function Contacto() {
       <div className={styles.container}>
         <div className={styles.info}>
           <h3>Centro de Ciencia Francisco José de Caldas</h3>
-          <p>
-            Carrera 28D entre, Cl. 66 #y 67<br />
-            Manizales, Colombia
+          <p className={styles.contactRow}>
+            <FaMapMarkerAlt className={styles.icon} />
+            <span>
+              Carrera 28D entre, Cl. 66 #y 67<br />
+              Manizales, Colombia
+            </span>
           </p>
-          <p>
-            <strong>Email:</strong> centrodeciencia@ucaldas.edu.co
+          <p className={styles.contactRow}>
+            <FaEnvelope className={styles.icon} />
+            <span>
+              <strong>Email:</strong> centrodeciencia@ucaldas.edu.co
+            </span>
           </p>
-          <p>
-            <strong>Teléfono:</strong> +57 333 2823909
+          <p className={styles.contactRow}>
+            <FaPhone className={styles.icon} />
+            <span>
+              <strong>Teléfono:</strong> +57 333 2823909
+            </span>
           </p>
         </div>
 
