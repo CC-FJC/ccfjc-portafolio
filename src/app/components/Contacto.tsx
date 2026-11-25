@@ -71,7 +71,7 @@ export default function Contacto() {
           <p className={styles.contactRow}>
             <FaMapMarkerAlt className={styles.icon} />
             <span>
-              Carrera 28D entre, Cl. 66 #y 67<br />
+              <strong>Ubicación:</strong> Carrera 28D entre, Cl. 66 #y 67<br />
               Manizales, Colombia
             </span>
           </p>
