@@ -47,12 +47,6 @@ const equipoData = [
     foto: "https://i.ibb.co/Hk8PC26/Susana.png",
   },
   {
-    nombre: "Mateo Quintero",
-    rol: "Mediación, prototipado y transferencia",
-    destacado: false,
-    foto: "https://i.ibb.co/4RssqBqw/Mateo.png",
-  },
-  {
     nombre: "Daniel Castillo",
     rol: "Mediación, prototipado y transferencia",
     destacado: false,
