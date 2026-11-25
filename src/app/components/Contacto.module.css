@@ -61,12 +61,13 @@
   margin-top: 16px;
 }
 
+/* apiladas: primero info de contacto, luego el formulario */
 .container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 16px;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 /* Info como dark inverse panel (bloque terminal en ink) */
@@ -148,15 +149,13 @@
   cursor: default;
 }
 
-.logoContainer {
-  margin-top: 1rem;
-  text-align: start;
-}
-
-.logoContainer img {
-  height: 60px;
-  width: auto;
-  max-width: 100%;
+/* titulo del formulario dentro de la card */
+.formTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 12px;
+  line-height: 1.4;
 }
 
 .status {

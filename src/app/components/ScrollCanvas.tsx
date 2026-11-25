@@ -16,7 +16,6 @@ function mulberry32(a: number) {
 }
 
 const INK = "22,22,53"; // #161635
-const PAPER = "127,127,127"; // #7f7f7f7
 const ACCENT = "226,45,69"; // #e22d45
 
 export default function ScrollCanvas() {
@@ -104,16 +103,6 @@ export default function ScrollCanvas() {
       }
 
       ctx.clearRect(0, 0, w, h);
-
-      // Ejes hairline (page-as-chart)
-      ctx.strokeStyle = `rgba(${PAPER},0.7)`;
-      ctx.lineWidth = 0.5;
-      ctx.beginPath();
-      ctx.moveTo(40.5, 0);
-      ctx.lineTo(40.5, h);
-      ctx.moveTo(0, h - 40.5);
-      ctx.lineTo(w, h - 40.5);
-      ctx.stroke();
 
       // Grid punteado
       ctx.fillStyle = `rgba(${INK},0.10)`;

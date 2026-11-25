@@ -8,6 +8,7 @@ import Programas from "./components/Programas";
 import Alianzas from "./components/Alianzas";
 import Equipo from "./components/Equipo";
 import Contacto from "./components/Contacto";
+import Logos from "./components/Logos";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <Alianzas />
         <Equipo />
         <Contacto />
+        <Logos />
       </main>
     </>
   );
