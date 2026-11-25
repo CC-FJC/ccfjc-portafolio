@@ -5,6 +5,12 @@
   margin: 0 auto;
 }
 
+/* El section de alianzas no tiene padding lateral (el slider va full-bleed),
+   asi que el eje [ 07 ] se indenta para quedar sobre el titulo */
+.section::before {
+  margin-left: 5%;
+}
+
 .sectionTitle {
   font-size: 2rem;
   font-weight: 500;

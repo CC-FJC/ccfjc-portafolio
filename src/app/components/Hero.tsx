@@ -5,7 +5,7 @@ import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <section id="hero" className={styles.hero} data-axis="01">
+    <section id="hero" className={styles.hero}>
       <div className={styles.content}>
         <div className={styles.logoContainer}>
           <Image
