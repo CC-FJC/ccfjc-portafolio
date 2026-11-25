@@ -12,7 +12,7 @@ export default function Hero() {
             src="/logo.png"
             alt="Logo Centro de Ciencia Francisco José de Caldas"
             width={600}
-            height={600}
+            height={207}
             className={styles.logo}
             priority
           />
