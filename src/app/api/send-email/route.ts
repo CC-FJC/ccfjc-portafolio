@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         sender: { email: process.env.BREVO_SENDER, name: "Centro de Ciencia" },
-        to: [{ email: "mateo.quintero@ucaldas.edu.co" }],
+        to: [{ email: "centrodeciencia@ucaldas.edu.co" }],
         subject: `Nueva cotización: ${servicio || "Consulta general"}`,
         htmlContent: `
           <h2>Nueva solicitud de cotización</h2>
